@@ -9,3 +9,15 @@
 *{
     -webkit-tap-highlight-color: transparent;
 }
+
+.replies::before{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background-color: hsl(211, 10%, 45%);
+    left: 7%;
+    opacity: .2;
+    border-radius: 6px;
+
+}

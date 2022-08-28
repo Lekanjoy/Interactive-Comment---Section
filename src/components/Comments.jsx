@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import Score from "./Score";
 import reply from "../images/icon-reply.svg";
-import amy from "../images/avatars/image-amyrobson.png";
 import CommentBox from "./CommentBox";
 import SubComment from './SubComments'
 
-function Comments({ commentData }) {
-  const userComments = commentData.comments;
-
-  const mappedComments = userComments.map((comment) => {
-
+function Comments({ commentData, commentState, addComment }) {
+  const mappedComments = commentData.map((comment) => {
     // Show Reply Box
     const [showReply, setShowReply] = useState(false);
     function handleShowReply() {
       setShowReply((prevShow) => !prevShow);
-    };
+    }
 
     return (
       <section key={comment.id} className="mb-4">
         <div className="bg-White w-full p-4 mb-4 rounded-lg lg:w-9/12 ">
           <div className="title flex justify-between gap-x-3 items-center w-4/5 mb-4 flex-nowrap">
-            <img src={amy} alt="Icon amyrobson" className="w-8 h-8" />
+            <img
+              src={comment.user.image.webp}
+              alt="Icon amyrobson"
+              className="w-8 h-8"
+            />
             <p className="text-DarkBlue font-semibold ">
               {comment.user.username}
             </p>
@@ -44,10 +44,18 @@ function Comments({ commentData }) {
             </div>
           </div>
         </div>
-        <div className="w-full">{showReply && <CommentBox />}</div>
+        <div className="w-full">
+          {showReply && (
+            <CommentBox
+              addComment={addComment}
+              setShowReply={setShowReply}
+              commentState={commentState}
+            />
+          )}
+        </div>
 
-        <div className="replies flex flex-col items-end ">
-          <SubComment comment={comment} />
+        <div className="replies flex flex-col items-end relative">
+          <SubComment comment={comment} commentState={commentState} />
         </div>
       </section>
     );
