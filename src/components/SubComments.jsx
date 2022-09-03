@@ -6,12 +6,13 @@ import ReplyScore from "./ReplyScore";
 
 
 
-function SubComments({ comment, commentState }) {
+function SubComments({ comment, commentState, replyData }) {
   return (
     <>
       {comment.replies.map((reply) => {
         // Show Reply Box
         const [showReply, setShowReply] = useState(false);
+
         function handleShowReply() {
           setShowReply((prevShow) => !prevShow);
         }
@@ -22,7 +23,7 @@ function SubComments({ comment, commentState }) {
               <div className="title flex justify-between gap-x-3 items-center w-4/5 mb-4 flex-nowrap">
                 <img
                   src={reply.user.image.webp}
-                  alt="Icon amyrobson"
+                  alt={reply.user.username}
                   className="w-8 h-8"
                 />
                 <p className="text-DarkBlue font-semibold ">

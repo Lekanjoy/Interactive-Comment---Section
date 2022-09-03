@@ -1,44 +1,57 @@
-import {useDebugValue, useState} from 'react'
+import { useState } from "react";
 
-
-function CommentBox({ addComment, setShowReply, commentState }) {
-  const [content, setReply] = useState("@");
-
-  function handleReply(e) {
-    setReply(`${e.target.value}`);
-  }
-
-  // Add/Submit Comment
-  function handleSubmit(e) {
-    e.preventDefault();
-    addComment({
-       content ,
-       id:454,
-       score: 0,
-       replies:[],
-       createdAt: 'Just Now'
-       
-      });
-    setReply("");
-    setShowReply(false);
-  }
-
+function CommentBox({ addComment, setShowReply, commentState, handleSubmit }) {
   let user = commentState.currentUser;
+  const [content, setContent] = useState("");
+  
+
+  function handleComment(e) {
+    setContent(`${e.target.value}`);
+  }
+
+
+   handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(content.length < 5){
+      alert('Comments must have more than 5 characters')
+      return
+    };
+ 
+    addComment({
+      content,
+      score: 0,
+      replies: [],
+      createdAt: "Just now",
+      user: {
+        image: {
+          png: "./images/avatars/image-juliusomo.png",
+          webp: "./images/avatars/image-juliusomo.webp",
+        },
+        username: user.username,
+      },
+    });
+
+    setContent("");
+    // setShowReply(false);
+  }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex justify-between gap-x-4 my-2  p-4 bg-White w-full rounded-lg "
+      className="flex justify-between flex-col gap-y-4 my-2 p-4 bg-White w-full rounded-lg "
     >
-      <img src={user.image.png} alt="user" className="w-8 h-8" />
       <textarea
         cols="20"
-        rows="2"
+        rows="3"
+        placeholder="Add a Comment"
         value={content}
-        onChange={handleReply}
+        onChange={handleComment}
         className="border border-LightGrayishBlue text-DarkBlue font-medium px-2 pb-3 rounded-lg resize-none flex-1 outline-none"
       ></textarea>
-      <div>
+      <div className="flex justify-between">
+        <img src={user.image.png} alt="user" className="w-8 h-8" />
+
         <input
           type="submit"
           value="REPLY"
@@ -49,4 +62,4 @@ function CommentBox({ addComment, setShowReply, commentState }) {
   );
 }
 
-export default CommentBox
+export default CommentBox;
