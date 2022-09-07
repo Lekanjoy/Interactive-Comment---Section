@@ -1,23 +1,24 @@
 import { useState } from "react";
 
-function CommentBox({ addComment, setShowReply, commentState, handleSubmit }) {
+function CommentBox({
+  addComment,
+  setShowReply,
+  commentState,
+  content,
+  setContent,
+  handleComment,
+  editComment,
+}) {
   let user = commentState.currentUser;
-  const [content, setContent] = useState("");
-  
 
-  function handleComment(e) {
-    setContent(`${e.target.value}`);
-  }
-
-
-   handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(content.length < 5){
-      alert('Comments must have more than 5 characters')
-      return
-    };
- 
+    if (content.length < 5) {
+      alert("Comment must contain more than 5 characters");
+      return;
+    }
+
     addComment({
       content,
       score: 0,
@@ -34,7 +35,7 @@ function CommentBox({ addComment, setShowReply, commentState, handleSubmit }) {
 
     setContent("");
     // setShowReply(false);
-  }
+  };
 
   return (
     <form
@@ -42,6 +43,7 @@ function CommentBox({ addComment, setShowReply, commentState, handleSubmit }) {
       className="flex justify-between flex-col gap-y-4 my-2 p-4 bg-White w-full rounded-lg "
     >
       <textarea
+        id="textBox"
         cols="20"
         rows="3"
         placeholder="Add a Comment"
@@ -55,7 +57,7 @@ function CommentBox({ addComment, setShowReply, commentState, handleSubmit }) {
         <input
           type="submit"
           value="REPLY"
-          className="bg-ModerateBlue px-4 py-1 text-center rounded-md text-White"
+          className="bg-ModerateBlue px-4 py-1 text-center rounded-md text-White cursor-pointer"
         />
       </div>
     </form>

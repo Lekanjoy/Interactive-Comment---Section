@@ -19,7 +19,7 @@ function SubComments({ comment, commentState, replyData }) {
 
         return (
           <section key={reply.id} className="mb-4 w-10/12">
-            <div className="bg-White  p-4 rounded-lg  lg:w-9/12 ">
+            <div className="bg-White  p-4 rounded-lg   ">
               <div className="title flex justify-between gap-x-3 items-center w-4/5 mb-4 flex-nowrap">
                 <img
                   src={reply.user.image.webp}

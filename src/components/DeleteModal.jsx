@@ -1,13 +1,8 @@
-import React from "react";
 
-function DeleteModal({ handleDelete, deleteComment }) {
-  // console.log(handleDelete);
-
- 
-
+function DeleteModal({ handleDelete, cancelDelete }) {
   return (
-    <div className=" fixed z-30 flex justify-center items-center w-full h-screen p-4">
-      <div className="bg-White shadow-2xl  h-auto flex flex-col p-4 rounded-md">
+    <div className="flex justify-center items-center p-5 fixed w-full h-screen left-0 top-0">
+      <div className="bg-White shadow-2xl  h-auto flex flex-col p-4 rounded-md md:w-96">
         <h1 className="text-lg  text-DarkBlue mb-4 font-bold">
           Delete comment
         </h1>
@@ -16,7 +11,10 @@ function DeleteModal({ handleDelete, deleteComment }) {
           comment and can't be undone.
         </p>
         <div className="flex justify-between w-full ">
-          <button className="p-3 text-White bg-GrayishBlue rounded-md">
+          <button
+            className="p-3 text-White bg-GrayishBlue rounded-md"
+            onClick={cancelDelete}
+          >
             NO, CANCEL
           </button>
           <button
