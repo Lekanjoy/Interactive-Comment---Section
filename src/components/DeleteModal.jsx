@@ -1,5 +1,5 @@
 
-function DeleteModal({ handleDelete, cancelDelete }) {
+function DeleteModal({ handleDelete, cancelDelete, handleDelete1 }) {
   return (
     <div className="flex justify-center items-center p-5 fixed w-full h-screen left-0 top-0">
       <div className="bg-White shadow-2xl  h-auto flex flex-col p-4 rounded-md md:w-96">

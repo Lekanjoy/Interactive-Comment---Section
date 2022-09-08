@@ -5,10 +5,9 @@ import CommentBox from "./components/CommentBox";
 
 function App() {
   const commentsData = data;
-
-  // Add Comments
   let [userDetails, setUserDetails] = useState(commentsData.comments);
 
+  // Add Comments
   function addComment(newComment) {
     let id = Math.floor(Math.random() * 1000) + 1;
     const upDatedComment = { ...newComment, id };
@@ -26,20 +25,18 @@ function App() {
   function editComment(id, text) {
     setUserDetails(userDetails.filter((comment) => comment.id != id));
     console.log("Edited comment with id:", id + " and value: " + text);
-
-
   }
-
 
   // CurrentUser Data
   const currentUser = commentsData.currentUser;
 
-  
   // Comment Value
   const [content, setContent] = useState("");
   function handleComment(e) {
     setContent(`${e.target.value}`);
   }
+  // Update Text
+  const [updateText, setUpdateText] = useState("SEND");
 
   return (
     <div className="App relative bg-VeryLightGray font-Rubik w-full h-full flex flex-col items-center p-8 md:px-40">
@@ -51,6 +48,7 @@ function App() {
         editComment={editComment}
         setContent={setContent}
         handleComment={handleComment}
+        setUpdateText={setUpdateText}
       />
       <CommentBox
         commentState={commentsData}
@@ -58,7 +56,8 @@ function App() {
         content={content}
         setContent={setContent}
         handleComment={handleComment}
-        editComment={editComment}
+        updateText={updateText}
+        setUpdateText={setUpdateText}
       />
     </div>
   );

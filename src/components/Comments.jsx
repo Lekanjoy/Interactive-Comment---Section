@@ -4,12 +4,11 @@ function Comments({
   commentData,
   commentState,
   currentUser,
-  handleShowReply,
   deleteComment,
   editComment,
   replyData,
-  content,
-  setContent
+  setContent,
+  setUpdateText
 }) {
   return (
     <>
@@ -24,6 +23,7 @@ function Comments({
             replyData={replyData}
             editComment={editComment}
             setContent={setContent}
+            setUpdateText={setUpdateText}
           />
         );
       })}
